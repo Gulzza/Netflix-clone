@@ -3,7 +3,7 @@ import { styled } from "@mui/material/styles";
 import VolumeUpIcon from "@mui/icons-material/VolumeUp";
 import VolumeOffIcon from "@mui/icons-material/VolumeOff";
 import PlayerControlButton from "./PlayerControlButton";
-
+import { Slider } from "@mui/material";
 const StyledSlider = styled(Slider)({
   height: 5,
   borderRadius: 0,
