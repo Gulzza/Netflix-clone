@@ -4,7 +4,7 @@ import { styled } from "@mui/material/styles";
 import VolumeUpIcon from "@mui/icons-material/VolumeUp";
 import VolumeOffIcon from "@mui/icons-material/VolumeOff";
 import PlayerControlButton from "./PlayerControlButton";
-import {SliderUnstyledOwnProps} from "@mui/base";
+import { Slider } from '@mui/base';
 
 const StyledSlider = styled(Slider)({
   height: 5,
