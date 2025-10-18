@@ -47,14 +47,16 @@ export default function DetailModal() {
   const [muted, setMuted] = useState(true);
 
   const handleReady = useCallback((player: Player) => {
-    playerRef.current = player;
-    setMuted(player.muted() ?? false);
-  }, []);
-
-const handleReady = useCallback((player: Player) => {
   playerRef.current = player;
   const mutedValue = player.muted();
   setMuted(mutedValue ?? false);
+}, []);
+
+const handleMute = useCallback((status: boolean) => {
+  if (playerRef.current) {
+    playerRef.current.muted(status);
+    setMuted(status);
+  }
 }, []);
 
   if (detail.mediaDetail) {
