@@ -1,22 +1,56 @@
-import { useState, useRef, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
-import Player from "video.js/dist/types/player";
-import { Box, Stack, Typography, Slider } from "@mui/material";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import PauseIcon from "@mui/icons-material/Pause";
-import SkipNextIcon from "@mui/icons-material/SkipNext";
-import FullscreenIcon from "@mui/icons-material/Fullscreen";
-import SettingsIcon from "@mui/icons-material/Settings";
-import BrandingWatermarkOutlinedIcon from "@mui/icons-material/BrandingWatermarkOutlined";
-import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
-import { useWindowSize } from "src/hooks/useWindowSize";
-import MainTitleTypography from "src/components/MainTitleTypography";
-import VolumeControllers from "src/components/watch/VolumeControllers";
-import VideoJSPlayer from "src/components/watch/VideoJSPlayer";
-import PlayerSeekBar from "src/components/watch/PlayerSeekBar";
-import PlayerControlButton from "src/components/watch/PlayerControlButton";
-import { formatTime } from "src/utils/common";
+import { Stack, Slider, styled } from "@mui/material";
+import VolumeUpIcon from "@mui/icons-material/VolumeUp";
+import VolumeOffIcon from "@mui/icons-material/VolumeOff";
+import PlayerControlButton from "./PlayerControlButton";
 
+const StyledSlider = styled(Slider)({
+  height: 5,
+  borderRadius: 0,
+  padding: 0,
+  "& .MuiSlider-track": {
+    border: "none",
+    backgroundColor: "red",
+  },
+  "& .MuiSlider-rail": {
+    border: "none",
+    backgroundColor: "white",
+    opacity: 0.85,
+  },
+  "& .MuiSlider-thumb": {
+    height: 10,
+    width: 10,
+    backgroundColor: "red",
+    boxShadow: "inherit",
+  },
+});
+
+export default function VolumeControllers({
+  value,
+  handleVolume,
+  handleVolumeToggle,
+  muted,
+}: {
+  value: number;
+  handleVolume: (_: Event, value: number | number[]) => void;
+  handleVolumeToggle: React.MouseEventHandler<HTMLButtonElement>;
+  muted: boolean;
+}) {
+  return (
+    <Stack direction="row" alignItems="center" spacing={{ xs: 0.5, sm: 1 }}>
+      <PlayerControlButton onClick={handleVolumeToggle}>
+        {muted ? <VolumeOffIcon /> : <VolumeUpIcon />}
+      </PlayerControlButton>
+
+      <StyledSlider
+        max={100}
+        value={value * 100}
+        valueLabelDisplay="auto"
+        onChange={handleVolume}
+        sx={{ width: { xs: 60, sm: 80, md: 100 } }}
+      />
+    </Stack>
+  );
+}
 const StyledSlider = styled(Slider)({
   height: 5,
   borderRadius: 0,
