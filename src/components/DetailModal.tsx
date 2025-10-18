@@ -51,12 +51,11 @@ export default function DetailModal() {
     setMuted(player.muted() ?? false);
   }, []);
 
-  const handleMute = useCallback((status: boolean) => {
-    if (playerRef.current) {
-      playerRef.current.muted(!status);
-      setMuted(!status);
-    }
-  }, []);
+const handleReady = useCallback((player: Player) => {
+  playerRef.current = player;
+  const mutedValue = player.muted();
+  setMuted(mutedValue ?? false);
+}, []);
 
   if (detail.mediaDetail) {
     return (
