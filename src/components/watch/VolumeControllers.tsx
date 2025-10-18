@@ -1,4 +1,4 @@
-import { Stack, Slider } from "@mui/material";
+import { Stack } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import VolumeUpIcon from "@mui/icons-material/VolumeUp";
 import VolumeOffIcon from "@mui/icons-material/VolumeOff";
