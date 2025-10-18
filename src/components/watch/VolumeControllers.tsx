@@ -1,9 +1,22 @@
-import { Stack } from "@mui/material";
-import { styled } from "@mui/material/styles";
-import VolumeUpIcon from "@mui/icons-material/VolumeUp";
-import VolumeOffIcon from "@mui/icons-material/VolumeOff";
-import PlayerControlButton from "./PlayerControlButton";
-import { Slider } from "@mui/material";
+import { useState, useRef, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
+import Player from "video.js/dist/types/player";
+import { Box, Stack, Typography, Slider } from "@mui/material";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import PauseIcon from "@mui/icons-material/Pause";
+import SkipNextIcon from "@mui/icons-material/SkipNext";
+import FullscreenIcon from "@mui/icons-material/Fullscreen";
+import SettingsIcon from "@mui/icons-material/Settings";
+import BrandingWatermarkOutlinedIcon from "@mui/icons-material/BrandingWatermarkOutlined";
+import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
+import { useWindowSize } from "src/hooks/useWindowSize";
+import MainTitleTypography from "src/components/MainTitleTypography";
+import VolumeControllers from "src/components/watch/VolumeControllers";
+import VideoJSPlayer from "src/components/watch/VideoJSPlayer";
+import PlayerSeekBar from "src/components/watch/PlayerSeekBar";
+import PlayerControlButton from "src/components/watch/PlayerControlButton";
+import { formatTime } from "src/utils/common";
+
 const StyledSlider = styled(Slider)({
   height: 5,
   borderRadius: 0,
