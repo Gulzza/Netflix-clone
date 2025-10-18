@@ -88,12 +88,13 @@ export function Component() {
     });
   };
 
-  const handleVolumeChange: SliderUnstyledOwnProps["onChange"] = (_, value) => {
-    playerRef.current?.volume((value as number) / 100);
-    setPlayerState((draft) => {
-      return { ...draft, volume: (value as number) / 100 };
-    });
-  };
+ const handleVolumeChange = (_: Event, value: number | number[]) => {
+  const newValue = Array.isArray(value) ? value[0] : value;
+  if (playerRef.current) {
+    playerRef.current.volume = newValue / 100;
+  }
+  setPlayerState((draft) => ({ ...draft, volume: newValue / 100 }));
+};
 
   const handleSeekTo = (v: number) => {
     playerRef.current?.currentTime(v);
@@ -270,5 +271,6 @@ export function Component() {
 }
 
 Component.displayName = "WatchPage";
+
 
 
