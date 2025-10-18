@@ -78,7 +78,7 @@ export function Component() {
 
     player.one("durationchange", () => {
       setPlayerInitialized(true);
-      setPlayerState((draft) => ({ ...draft, duration: player.duration() }));
+      setPlayerState((draft) => ({ ...draft, duration: player.duration() ?? 0 }));
     });
 
     playerRef.current = player;
@@ -270,4 +270,5 @@ export function Component() {
 }
 
 Component.displayName = "WatchPage";
+
 
