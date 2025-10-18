@@ -72,7 +72,7 @@ export function Component() {
 
     player.on("timeupdate", () => {
       setPlayerState((draft) => {
-        return { ...draft, playedSeconds: player.currentTime() };
+        return { ...draft, playedSeconds: player.currentTime() ?? 0 };
       });
     });
 
@@ -270,3 +270,4 @@ export function Component() {
 }
 
 Component.displayName = "WatchPage";
+
